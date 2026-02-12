@@ -1,10 +1,10 @@
-package com.jujulioed.healthcoreservice;
+package com.jujulioed.healthcoreapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class HealthCoreServiceApplicationTests {
+class HealthCoreApiApplicationTests {
 
 	@Test
 	void contextLoads() {

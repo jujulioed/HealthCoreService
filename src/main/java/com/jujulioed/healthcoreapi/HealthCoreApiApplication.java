@@ -1,13 +1,13 @@
-package com.jujulioed.healthcoreservice;
+package com.jujulioed.healthcoreapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HealthCoreServiceApplication {
+public class HealthCoreApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HealthCoreServiceApplication.class, args);
+		SpringApplication.run(HealthCoreApiApplication.class, args);
 	}
 
 }
