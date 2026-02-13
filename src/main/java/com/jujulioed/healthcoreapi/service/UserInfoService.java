@@ -1,9 +1,12 @@
 package com.jujulioed.healthcoreapi.service;
 
 
+import com.jujulioed.healthcoreapi.dto.UserInfoDTO;
 import com.jujulioed.healthcoreapi.entity.UserInfo;
 import com.jujulioed.healthcoreapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,12 +42,15 @@ public class UserInfoService implements UserDetailsService {
 
         // Convert UserInfo to UserDetails (UserInfoDetails)
         UserInfo user = userInfo.get();
-        return new User(user.getEmail(), user.getPassword(), user.getRoles());
+        List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(user.getRoles());
+        return new User(user.getEmail(), user.getPassword(), authorities);
     }
 
     // Add any additional methods for registering or managing users
-    public String addUser(UserInfo userInfo) {
+    public String addUser(UserInfoDTO userInfoDTO) {
         // Encrypt password before saving
+        System.out.println(userInfoDTO);
+        UserInfo userInfo = new UserInfo(userInfoDTO.name(), userInfoDTO.email(), userInfoDTO.roles(), userInfoDTO.password());
         userInfo.setPassword(encoder.encode(userInfo.getPassword()));
         repository.save(userInfo);
         return "User added successfully!";

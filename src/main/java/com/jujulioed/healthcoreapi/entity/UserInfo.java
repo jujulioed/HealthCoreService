@@ -1,28 +1,39 @@
 package com.jujulioed.healthcoreapi.entity;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
+@Table(name="users")
 public class UserInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name="name")
     private String name;
+
+    @Column(name="email")
     private String email;
-    private Collection<GrantedAuthority> roles;
+
+    @Column(name="roles")
+    private String roles;
+
+    @Column(name="password")
     private String password;
+
+    public UserInfo(String name, String email, String roles, String password) {
+        this.name = name;
+        this.email = email;
+        this.roles = roles;
+        this.password = password;
+    }
 }

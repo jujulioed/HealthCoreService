@@ -18,7 +18,10 @@ public class UserInfoDetails implements UserDetails  {
     public UserInfoDetails(UserInfo user) {
         this.username = user.getEmail(); // Use email as username
         this.password = user.getPassword();
-        this.authorities = (List<GrantedAuthority>) user.getRoles();
+        this.authorities = List.of(user.getRoles().split(","))
+                .stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
     }
 
     @Override
