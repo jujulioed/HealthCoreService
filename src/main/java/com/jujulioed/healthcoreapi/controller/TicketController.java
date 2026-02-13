@@ -18,7 +18,7 @@ public class TicketController {
     }
 
     @PostMapping
-    public ResponseEntity<TicketResponseDTO> getTicket(@RequestBody String userId) {
+    public ResponseEntity<TicketResponseDTO> generateTicket(@RequestBody String userId) {
         TicketResponseDTO ticketResponseDTO = ticketService.generateATicket(userId);
         return ResponseEntity.created(URI.create("")).body(ticketResponseDTO);
     }
