@@ -44,8 +44,8 @@ public class SecurityConfig {
                         .requestMatchers("/auth/addNewUser", "/auth/generateToken", "/apihealthcheck").permitAll()
 
                         // Role-based endpoints
-                        .requestMatchers("/auth/user/**").hasAuthority("ROLE_USER")
-                        .requestMatchers("/auth/admin/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/auth/user/**", "/user/**").hasAuthority("ROLE_USER")
+                        .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
 
                         // All other endpoints require authentication
                         .anyRequest().authenticated()
