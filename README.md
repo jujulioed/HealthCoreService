@@ -36,13 +36,22 @@ SPRING_DATASOURCE_PASSWORD=postgres
 
 ---
 
+## Rodar aplicação via docker
+
+No diretório rodar raiz:
+`docker compose up --build`
+
+
+
+---
+
 ## Build da Aplicação
 
 mvn clean package -DskipTests
 
----
+**---
 
-## Executar Aplicação
+## Executar Aplicação**
 
 java -jar target/*.jar
 
